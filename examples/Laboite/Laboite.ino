@@ -6,6 +6,11 @@ LedMatrixPanel afficheur;
 #include <ESP8266WiFi.h>
 #include <WiFiManager.h>             //https://github.com/tzapu/WiFiManager
 
+// Librairie pour générer les buffers
+// à importer uniquement pour les screens personnalisés
+#include <ESP8266LaboiteScreen.h>
+Screen_32_16_2 welcome;
+
 // la librairie Redgick !
 #include <ESP8266LenuageCore.h>
 
@@ -18,24 +23,6 @@ Lenuage lenuage(
   "09:02:E4:52:CA:EE:45:EB:EC:93:4B:46:91:63:87:62:81:BC:93:78"
 );
 
-uint8_t welcome[64] = {0b00000000,  0b00000000, 0b00000000, 0b00000000,
-                       0b01000000, 0b00000000, 0b00000000, 0b00000000,
-                       0b01000000, 0b00000000, 0b00000000, 0b00000000,
-                       0b01000001, 0b11000000, 0b00000000, 0b00000000,
-                       0b01000010, 0b01000000, 0b00000000, 0b00000000,
-                       0b01000010, 0b11000000, 0b00000000, 0b00000000,
-                       0b01111001, 0b01000000, 0b00000000, 0b00000000,
-                       0b00000000, 0b00000000, 0b00000000, 0b00000000,
-                       0b00000000, 0b00000000, 0b00000000, 0b00000000,
-                       0b01110000, 0b00001000, 0b10000000, 0b00000000,
-                       0b01001000, 0b00000001, 0b11000000, 0b00000000,
-                       0b01110001, 0b10011000, 0b10000110, 0b00000000,
-                       0b01001010, 0b01001000, 0b10001011, 0b00000000,
-                       0b01001010, 0b01001000, 0b10001100, 0b00000000,
-                       0b01110001, 0b10011100, 0b01100110, 0b00000000,
-                       0b00000000, 0b00000000, 0b00000000, 0b00000000,
-                      };
-
 
 void setup() {
   // initialisation de la liaison série
@@ -44,7 +31,10 @@ void setup() {
   // display initialization
   afficheur.init();
   afficheur.intensity(0);
-  afficheur.display(welcome); // message d'accueil
+  welcome.print(0, 2, "la");
+  welcome.print(1, 9, "boite");
+  welcome.print(28, 1, "2", FONT_4X6);
+  afficheur.display(welcome.getBuffer()); // message d'accueil
 
   // we start by connecting to a WiFi network
   WiFiManager wifiManager;
@@ -60,7 +50,7 @@ void loop() {
   // on affiche une tuile
   Serial.print("on affiche la tuile : ");
   Serial.println(current_id);
-  afficheur.display(lenuage.getTileBuffer(current_id));
+  afficheur.display(lenuage.getTileScreen(current_id).getBuffer());
 
   unsigned long top = millis();
 
@@ -72,7 +62,7 @@ void loop() {
 
   // on attend avant d'afficher la tuile suivante
   int delai = lenuage.getTileDuration(current_id);
-  while(millis() < top + delai) {
+  while (millis() < top + delai) {
     delay(50);
   }
 

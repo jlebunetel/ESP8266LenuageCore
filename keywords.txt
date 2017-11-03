@@ -1,0 +1,35 @@
+#######################################
+# Syntax Coloring Map For ESP8266LenuageCore
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+ESP8266LenuageCore	KEYWORD1
+Tile	KEYWORD1
+Lenuage	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+getBoite	KEYWORD2
+getTile	KEYWORD2
+updateBuffer	KEYWORD2
+updateTile	KEYWORD2
+printBuffer	KEYWORD2
+clearTile	KEYWORD2
+getTileScreen	KEYWORD2
+getNextTile	KEYWORD2
+getTileDuration	KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+TILES_MAX_NUMBER	LITERAL1

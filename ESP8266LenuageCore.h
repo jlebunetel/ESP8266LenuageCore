@@ -10,20 +10,22 @@
 //#define DEBUG 1
 
 // include description files for other libraries used
+#include <ESP8266LaboiteScreen.h>
+
 
 // taille en mémoire, en octet ?
 struct tile {
   uint8_t  _id;
   uint64_t _last_activity;
   uint8_t  _previous_id;
-  uint8_t  _buffer[64];
+  Screen_32_16_2 _screen;
   uint8_t  _duration;
   bool     _exist;
   bool     _update;
 };
 typedef struct tile Tile;
 
-#define TILES_MAX_NUMBER 10
+#define TILES_MAX_NUMBER 50
 
 
 // library interface description
@@ -37,7 +39,7 @@ class Lenuage {
     void updateTile(int index);
     void printBuffer();
     void clearTile(int i);
-    uint8_t* getTileBuffer(int id);
+    Screen getTileScreen(int id);
     int getNextTile(int id);
     int getTileDuration(int id);
 
@@ -49,10 +51,5 @@ class Lenuage {
     String url;
     Tile tiles[TILES_MAX_NUMBER];
 };
-
-void clear(uint8_t * buffer64);
-void setPixel(uint8_t * buffer64, uint8_t x, uint8_t y);
-void draw(uint8_t * buffer64, int x, int y, int width, int height, String content);
-void write(uint8_t * buffer64, int x, int y, char c);
 
 #endif
