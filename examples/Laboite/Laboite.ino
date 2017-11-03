@@ -31,10 +31,12 @@ void setup() {
   // display initialization
   afficheur.init();
   afficheur.intensity(0);
+
+  // message d'accueil
   welcome.print(0, 2, "la");
   welcome.print(1, 9, "boite");
   welcome.print(28, 1, "2", FONT_4X6);
-  afficheur.display(welcome.getBuffer()); // message d'accueil
+  afficheur.display(welcome.getBuffer());
 
   // we start by connecting to a WiFi network
   WiFiManager wifiManager;
