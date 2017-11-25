@@ -20,6 +20,7 @@ struct tile {
   uint8_t  _previous_id;
   Screen_32_16_2 _screen;
   uint8_t  _duration;
+  uint8_t  _brightness;
   bool     _exist;
   bool     _update;
 };
@@ -42,6 +43,7 @@ class Lenuage {
     Screen getTileScreen(int id);
     int getNextTile(int id);
     int getTileDuration(int id);
+    int getTileBrightness(int id);
 
   // library-accessible "private" interface
   private:

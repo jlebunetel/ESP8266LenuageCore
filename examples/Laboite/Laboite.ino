@@ -52,6 +52,7 @@ void loop() {
   // on affiche une tuile
   Serial.print("on affiche la tuile : ");
   Serial.println(current_id);
+  afficheur.intensity(lenuage.getTileBrightness(current_id));
   afficheur.display(lenuage.getTileScreen(current_id).getBuffer());
 
   unsigned long top = millis();

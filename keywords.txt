@@ -23,6 +23,7 @@ clearTile	KEYWORD2
 getTileScreen	KEYWORD2
 getNextTile	KEYWORD2
 getTileDuration	KEYWORD2
+getTileBrightness	KEYWORD2
 
 #######################################
 # Instances (KEYWORD2)

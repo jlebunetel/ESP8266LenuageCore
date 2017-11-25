@@ -253,6 +253,11 @@ void Lenuage::updateTile(int index) {
     tiles[index]._duration = int(root["duration"]);
   }
 
+  if (root.containsKey("brightness")) {
+    //Serial.println(int(root["brightness"]));
+    tiles[index]._brightness = int(root["brightness"]);
+  }
+
   // on explore l'arbre json
   JsonArray& data = root["items"];
   for (auto item : data) {
@@ -325,6 +330,8 @@ void Lenuage::printBuffer() {
     Serial.print(tiles[i]._update);
     Serial.print(" | exist ");
     Serial.println(tiles[i]._exist);
+    Serial.print(" | brightness ");
+    Serial.println(tiles[i]._brightness);
   }
 };
 
@@ -377,6 +384,17 @@ int Lenuage::getTileDuration(int id) {
   }
   // par defaut on renvoie 5 secondes
   return 5000;
+};
+
+int Lenuage::getTileBrightness(int id) {
+  for (int i = 0; i < TILES_MAX_NUMBER; i++) {
+    if (tiles[i]._id == id) {
+      // on a trouvé la tuile !
+      return(tiles[i]._brightness);
+    }
+  }
+  // par defaut on renvoie la valeur minimale
+  return 0;
 };
 
 
