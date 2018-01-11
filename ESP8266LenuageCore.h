@@ -10,23 +10,38 @@
 //#define DEBUG 1
 
 // include description files for other libraries used
-#include <ESP8266LaboiteScreen.h>
+//#include <ESP8266LaboiteScreen.h>
+#include <Redgick_GFX.h>
 
-
+/*
 // taille en mémoire, en octet ?
 struct tile {
   uint8_t  _id;
   uint64_t _last_activity;
   uint8_t  _previous_id;
-  Screen_32_16_2 _screen;
+  Screen _screen(32, 16, MONOCHROME);
   uint8_t  _duration;
   uint8_t  _brightness;
   bool     _exist;
   bool     _update;
 };
 typedef struct tile Tile;
+*/
 
 #define TILES_MAX_NUMBER 50
+
+class Tile {
+  public:
+    Tile(uint8_t width, uint8_t height, uint8_t color_channels);
+    uint8_t  _id;
+    uint64_t _last_activity;
+    uint8_t  _previous_id;
+    Screen   _screen;
+    uint8_t  _duration;
+    uint8_t  _brightness;
+    bool     _exist;
+    bool     _update;
+};
 
 
 // library interface description

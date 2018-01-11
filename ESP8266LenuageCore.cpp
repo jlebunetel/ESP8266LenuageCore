@@ -11,10 +11,18 @@
 // include description files for other libraries used
 #include "ESP8266HTTPClient.h"
 #include <ArduinoJson.h>
+#include <Redgick_GFX.h>
 
 
 // Constructor /////////////////////////////////////////////////////////////////
 // Function that handles the creation and setup of instances
+
+
+Tile::Tile(uint8_t width, uint8_t height, uint8_t color_channels) {
+  /* _screen = Screen(width, height, color_channels);
+  */
+  return;
+};
 
 Lenuage::Lenuage(char* server, char* apikey, char* fingerprint = "") {
   // initialize this instance's variables
@@ -26,6 +34,7 @@ Lenuage::Lenuage(char* server, char* apikey, char* fingerprint = "") {
   // do whatever is required to initialize the library
   // initialisation du buffer
   for (int i = 0; i < TILES_MAX_NUMBER; i++) {
+    tiles[i] = Tile(32, 16, MONOCHROME);
     clearTile(i);
   }
 };

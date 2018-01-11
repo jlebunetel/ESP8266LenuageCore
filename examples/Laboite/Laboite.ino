@@ -16,7 +16,7 @@ Screen_32_16_2 welcome;
 
 Lenuage lenuage(
   "http://dev.laboite.pro",                 // server url
-  "",   // api key
+  "ed49d498-b9b8-44b6-bf6e-ace527c6f3b9",   // api key
   // the server ssl fingerprint is needed for a HTTPS connection
   // get it using the following command in a terminal:
   // echo | openssl s_client -connect redgick.com:443 |& openssl x509 -fingerprint -noout
